@@ -1,0 +1,176 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+    <title>AWS Basic Networking - Autom8-it</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../../../assets/css/main.css" />
+</head>
+
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Main -->
+        <div id="main">
+            <div class="inner">
+
+                <!-- Header -->
+                <header id="header">
+                    <a href="../../../../index.html" class="logo"><strong>Autom8-it</strong></a>
+                </header>
+
+                <!-- Content -->
+                <section>
+                    <header class="main">
+                        <h1>AWS Basic Networking</h1>
+                        <p>Understanding Basic Networking Resources in AWS - The base for compute solutions on AWS</p>
+                    </header>
+
+                    <p>When designing cloud infrastructure, networking is the backbone. In AWS, setting up a secure and
+                        scalable network starts with a Virtual Private Cloud (VPC). In this post, we’ll walk through the
+                        essential networking components in AWS and how to provision them using Terraform.</p>
+
+                    <p>
+                        Amazon Web Services (AWS) provides a robust set of networking components that allow cloud
+                        architects to design secure, scalable, and highly available infrastructure. In this post,
+                        we’ll explore the foundational networking resources in AWS and how they work together to
+                        enable connectivity and isolation.
+                    </p>
+
+                    <h3>Virtual Private Cloud (VPC)</h3>
+                    <p>
+                        A <strong>VPC</strong> is a logically isolated section of the AWS cloud where you can launch
+                        AWS resources in a virtual network that you define. You control IP address ranges, subnets,
+                        route tables, and gateways.
+                    </p>
+
+                    <h3>Public and Private Subnets</h3>
+                    <p>
+                        Subnets divide your VPC’s IP address range into smaller segments:
+                    </p>
+                    <ul>
+                        <li><strong>Public Subnets:</strong> Subnets that have a route to the internet via an
+                            Internet Gateway (IGW).</li>
+                        <li><strong>Private Subnets:</strong> Subnets without direct internet access, typically used
+                            for backend services or databases.</li>
+                    </ul>
+
+                    <h3>Route Tables and Routes</h3>
+                    <p>
+                        A <strong>route table</strong> contains a set of rules, called routes, that determine where
+                        network traffic is directed. Each subnet must be associated with a route table.
+                    </p>
+                    <p>
+                        Example route for a public subnet:
+                    </p>
+                    <pre><code>
+Destination: 0.0.0.0/0
+Target: igw-xxxxxxxx
+                    </code></pre>
+
+                    <h3>Internet Gateway (IGW)</h3>
+                    <p>
+                        An <strong>Internet Gateway</strong> is a horizontally scaled, redundant, and highly
+                        available VPC component that allows communication between instances in your VPC and the
+                        internet.
+                    </p>
+                    <p>
+                        To make a subnet public, you must:
+                    </p>
+                    <ul>
+                        <li>Attach an IGW to your VPC</li>
+                        <li>Update the route table to direct traffic to the IGW</li>
+                        <li>Ensure instances have public IPs</li>
+                    </ul>
+
+                    <h3>NAT Gateway</h3>
+                    <p>
+                        A <strong>NAT Gateway</strong> enables instances in a private subnet to connect to the
+                        internet or other AWS services, but prevents the internet from initiating connections with
+                        those instances.
+                    </p>
+                    <p>
+                        NAT Gateways are:
+                    </p>
+                    <ul>
+                        <li>Managed by AWS</li>
+                        <li>Highly available within an Availability Zone</li>
+                        <li>Used in conjunction with Elastic IPs</li>
+                    </ul>
+
+                    <h3>Conclusion</h3>
+                    <p>
+                        Understanding these core networking components—VPCs, subnets, route tables, IGWs, and NAT
+                        Gateways—is essential for designing secure and efficient cloud architectures in AWS. With
+                        these building blocks, you can tailor your network to meet the needs of any application,
+                        from public-facing web apps to private backend services.
+                    </p>
+
+                    <hr class="major" />
+
+                    <ul class="actions">
+                        <li><a href="../../aws.html" class="button big">Go back to AWS posts</a></li>
+                    </ul>
+
+                </section>
+
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div id="sidebar">
+            <div class="inner">
+                <!-- Menu -->
+                <nav id="menu">
+                    <header class="major">
+                        <h3>Menu</h3>
+                    </header>
+                    <ul>
+                        <li><a href="../../../../index.html">Homepage</a></li>
+                        <li><a href="../../../../about.html">About</a></li>
+                        <!-- <li><a href="services.html">Services</a></li> -->
+                        <li>
+                            <span class="opener">Blogs & Resources</span>
+                            <ul>
+                                <li><a href="../ai/ai.html">AI</a></li>
+                                <li><a href="../aviatrix/aviatrix.html">Aviatrix</a></li>
+                                <li><a href="../aws/aws.html">AWS</a></li>
+                                <li><a href="../azure/azure.html">Azure</a></li>
+                                <li><a href="../gcp/gcp.html">GCP</a></li>
+                                <li><a href="../python/python.html">Python</a></li>
+                                <li><a href="../javascript/javascript.html">Javascript</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!-- Footer -->
+                <footer id="footer">
+                    <p class="copyright">&copy; Autom8-it. All rights reserved. Demo Images: <a
+                            href="https://unsplash.com">Unsplash</a>. Design: <a href="https://html5up.net">HTML5
+                            UP</a>.</p>
+                </footer>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../../../assets/js/jquery.min.js"></script>
+    <script src="../../../../assets/js/browser.min.js"></script>
+    <script src="../../../../assets/js/breakpoints.min.js"></script>
+    <script src="../../../../assets/js/util.js"></script>
+    <script src="../../../../assets/js/main.js"></script>
+
+</body>
+
+</html>

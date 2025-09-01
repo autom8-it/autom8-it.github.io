@@ -1,0 +1,316 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>MLvDL - Autom8-it</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../../assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<a href="../../index.html" class="logo"><strong>Autom8-it</strong></a>
+								</header>
+
+							<!-- Content -->
+								<section>
+									<header class="main">
+										<h1>ML vs DL</h1>
+									</header>
+
+									<span class="image main"><img src="../../images/pic11.jpg" alt="" /></span>
+
+									<hr class="major" />
+
+                                    <h2>Data Requirements</h2>
+
+                                    <p>ML: Works well with small to medium datasets.</p>
+                                    
+                                    <p>DL: Requires large amounts of data to perform well.</p>
+
+                                    <p>Example: An ML model might classify spam emails using thousands of examples; a DL model might need millions.</p>
+
+                                    <hr class="major" />
+                                    
+                                    <h2>Feature Engineering</h2>
+
+                                    <p>ML: Requires manual feature extraction. Humans decide what input features (like word counts, length of message, etc.) the model should use.</p>
+
+                                    <p>DL: Performs automatic feature extraction. Deep neural networks learn features from raw data.</p>
+
+                                    <p>DL models are good at finding subtle patterns without human help — like edges in images or phonemes in audio.</p>
+
+                                    <hr class="major" />
+                                    
+                                    <h2>Training Time</h2>
+
+                                    <p>ML: Faster to train.</p>
+
+                                    <p>DL: Slower to train due to:</p>
+
+                                    <ul>
+                                        <li>High computational needs</li>
+                                        <li>Larger datasets</li>
+                                        <li>More parameters</li>
+                                    </ul>
+
+                                    <p>ML models might train in minutes or hours. DL models may take hours, days, or even weeks.</p>
+
+                                    <hr class="major" />
+                                    
+                                    <h2>Model Complexity</h2>
+
+                                    <p>ML: Models are simpler — examples include:</p>
+
+                                    <ul>
+                                        <li>Linear regression</li>
+                                        <li>Decision trees</li>
+                                        <li>Support vector machines (SVM)</li>
+                                    </ul>
+
+                                    <p>DL: Models are complex, often involving many layers of artificial neurons (deep neural networks).</p>
+
+                                    <p>DL can have hundreds of layers; ML typically has a single layer or a few.</p>
+
+                                    <hr class="major" />
+                                    
+                                    <h2>Hardware Dependency</h2>
+
+                                    <p>ML: Can run on standard CPUs.</p>
+
+                                    <p>DL: Often needs specialized hardware like GPUs or TPUs to train efficiently.</p>
+
+                                    <hr class="major" />
+
+                                    <h2>Interpretability</h2>
+
+                                    <p>ML: More interpretable; easier to understand and explain.</p>
+
+                                    <p>DL: Often a black box — hard to understand why a decision was made.</p>
+
+                                    <p>In regulated industries (finance, healthcare), ML is sometimes preferred for transparency.</p>
+
+                                    <hr class="major" />
+
+                                    <h2>Use case examples</h2>
+
+                                    <p>ML</p>
+
+                                    <ul>
+                                        <li>Fraud detection</li>
+                                        <li>Credit scoring</li>
+                                        <li>Predictive maintenance</li>
+                                        <li>Price prediction</li>
+                                    </ul>
+
+                                    <p>DL</p>
+
+                                    <ul>
+                                        <li>Image classification (e.g., dogs vs. cats)</li>
+                                        <li>Speech recognition (e.g., voice assistants)</li>
+                                        <li>Self-driving car perception</li>
+                                        <li>Language translation</li>
+                                    </ul>
+
+                                    <hr class="major" />
+
+                                    <h2>Code examples</h2>
+
+                                    <h3>ML</h3>
+
+                                    <pre><code>
+pip install scikit-learn tensorflow matplotlib
+from sklearn import datasets
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.svm import SVC
+from sklearn.metrics import classification_report, accuracy_score
+
+# Load digits dataset (similar to MNIST)
+digits = datasets.load_digits()
+
+# Flatten the image (8x8 -> 64 features)
+X = digits.images.reshape((len(digits.images), -1))
+y = digits.target
+
+# Split data
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Standardize features
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+
+# Train SVM
+model = SVC(kernel='rbf')
+model.fit(X_train, y_train)
+
+# Predict
+y_pred = model.predict(X_test)
+
+# Evaluation
+print("Accuracy:", accuracy_score(y_test, y_pred))
+print(classification_report(y_test, y_pred))
+                                    </code></pre>
+
+                                    <hr class="major" />
+
+                                    <h3>DL</h3>
+                                    
+                                    <pre><code>
+import tensorflow as tf
+from tensorflow.keras import layers, models
+from tensorflow.keras.datasets import mnist
+from tensorflow.keras.utils import to_categorical
+
+# Load MNIST (28x28 images, different from sklearn's digits)
+(X_train, y_train), (X_test, y_test) = mnist.load_data()
+
+# Normalize and reshape
+X_train = X_train.reshape(-1, 28*28) / 255.0
+X_test = X_test.reshape(-1, 28*28) / 255.0
+
+# One-hot encode targets
+y_train_cat = to_categorical(y_train, 10)
+y_test_cat = to_categorical(y_test, 10)
+
+# Build model
+model = models.Sequential([
+    layers.Dense(128, activation='relu', input_shape=(784,)),
+    layers.Dense(64, activation='relu'),
+    layers.Dense(10, activation='softmax')
+])
+
+# Compile
+model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
+
+# Train
+model.fit(X_train, y_train_cat, epochs=5, batch_size=32, validation_split=0.1)
+
+# Evaluate
+loss, acc = model.evaluate(X_test, y_test_cat)
+print(f"Test Accuracy: {acc:.4f}")
+
+                                    </code></pre>
+
+                                    <hr class="major" />
+
+                                    <h2>Summary</h2>
+
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>Factor</th>
+                                                <th>ML</th>
+                                                <th>DL</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Data Size</td>
+                                                <td>Works with small to medium datasets</td>
+                                                <td>Requires large datasets</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Feature Engineering</td>
+                                                <td>Manual</td>
+                                                <td>Automatic</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Model Type</td>
+                                                <td>Simpler (trees, SVMs, etc.)</td>
+                                                <td>Complex neural networks</td>
+                                            </tr>
+                                             <tr>
+                                                <td>Training Time</td>
+                                                <td>Shorter</td>
+                                                <td>Longer</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Hardware Needs</td>
+                                                <td>CPUs usually enough</td>
+                                                <td>GPUs/TPUs required</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Interpretability</td>
+                                                <td>Easier to understand</td>
+                                                <td>Hard to interpret</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Performance (Complex Tasks)</td>
+                                                <td>Lower</td>
+                                                <td>Higher</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <hr class="major" />
+									
+									<ul class="actions">
+										<li><a href="../ai/ai.html" class="button big">Go back to AI posts</a></li>
+									</ul>
+
+								</section>
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+						<!-- Menu -->
+							<nav id="menu">
+								<header class="major">
+									<h2>Menu</h2>
+								</header>
+								<ul>
+									<li><a href="../../index.html">Homepage</a></li>
+									<li><a href="../../about.html">About</a></li>
+									<!-- <li><a href="services.html">Services</a></li> -->
+									<li>
+										<span class="opener">Blogs & Resources</span>
+										<ul>
+											<li><a href="../ai/ai.html">AI</a></li>
+                                            <li><a href="../aviatrix/aviatrix.html">Aviatrix</a></li>
+											<li><a href="../aws/aws.html">AWS</a></li>
+											<li><a href="../azure/azure.html">Azure</a></li>
+											<li><a href="../gcp/gcp.html">GCP</a></li>
+											<li><a href="../python/python.html">Python</a></li>
+											<li><a href="../javascript/javascript.html">Javascript</a></li>
+										</ul>
+									</li>
+								</ul>
+							</nav>
+
+						<!-- Footer -->
+							<footer id="footer">
+								<p class="copyright">&copy; Autom8-it. All rights reserved. Demo Images: <a href="https://unsplash.com">Unsplash</a>. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+							</footer>
+
+						</div>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="../../assets/js/jquery.min.js"></script>
+			<script src="../../assets/js/browser.min.js"></script>
+			<script src="../../assets/js/breakpoints.min.js"></script>
+			<script src="../../assets/js/util.js"></script>
+			<script src="../../assets/js/main.js"></script>
+
+	</body>
+</html>

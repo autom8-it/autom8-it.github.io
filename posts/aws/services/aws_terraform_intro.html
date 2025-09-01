@@ -1,0 +1,173 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+    <title>AWS Basic Networking - Autom8-it</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../../assets/css/main.css" />
+</head>
+
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Main -->
+        <div id="main">
+            <div class="inner">
+
+                <!-- Header -->
+                <header id="header">
+                    <a href="../../../index.html" class="logo"><strong>Autom8-it</strong></a>
+                </header>
+
+                <!-- Content -->
+                <section>
+                    <header class="main">
+                        <h1>AWS Terraform Provider</h1>
+                        <p>Getting Started with the AWS Terraform Provider</p>
+                    </header>
+
+                    <hr class="major" />
+
+                    <p><strong>Terraform</strong> is a powerful Infrastructure-as-Code (IaC) tool that enables cloud
+                        architects to define and provision infrastructure using declarative configuration files. One of
+                        its most widely used providers is the <strong>AWS provider</strong>, which allows users to
+                        manage AWS resources seamlessly. In this post, we’ll explore how to configure the AWS provider,
+                        understand its authentication methods, and walk through a basic example.</p>
+
+                    <h3>Authentication Methods</h3>
+                    <p>The AWS provider supports several authentication mechanisms to securely access your AWS account:
+                    </p>
+                    <ul>
+                        <li><strong>Environment Variables:</strong> Set <code>AWS_ACCESS_KEY_ID</code> and
+                            <code>AWS_SECRET_ACCESS_KEY</code> in your shell environment.
+                        </li>
+                        <li><strong>Shared Credentials File:</strong> Use the <code>~/.aws/credentials</code> file with
+                            named profiles.</li>
+                        <li><strong>EC2 Instance Metadata:</strong> Automatically retrieves credentials from the
+                            instance metadata service when running on EC2.</li>
+                        <li><strong>IAM Roles for Service Accounts (IRSA):</strong> Used in EKS clusters to assign IAM
+                            roles to pods.</li>
+                        <li><strong>Static Credentials in Provider Block:</strong> Not recommended for production due to
+                            security risks.</li>
+                    </ul>
+                    <h3>Example: AWS Provider Block</h3>
+                    <pre><code>
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 6.0"
+    }
+  }
+}
+
+# Configure the AWS Provider
+provider "aws" {
+  region     = "us-west-2"
+  access_key = "my-access-key"
+  secret_key = "my-secret-key"
+}
+
+# Create a VPC
+resource "aws_vpc" "example" {
+  cidr_block = "10.0.0.0/16"
+}
+                    </code></pre>
+                    <p>This configuration tells Terraform to use the AWS provider in the <code>us-west-2</code> region
+                        and the <code>default</code> profile from your credentials file.</p>
+
+                    <h3>Example: Creating an S3 Bucket</h3>
+                    <pre><code>
+resource "aws_s3_bucket" "example" {
+    bucket = "my-terraform-example-bucket"
+    acl    = "private"
+
+    tags = {
+        Name        = "MyBucket"
+        Environment = "Dev"
+    }
+}
+                    </code></pre>
+
+                    <p>This resource block creates a private S3 bucket named <code>my-terraform-example-bucket</code>
+                        with tags for identification.</p>
+
+                    <h3>Conclusion</h3>
+                    <p>
+                        The AWS Terraform provider is a robust and flexible way to manage AWS infrastructure. By
+                        understanding its authentication options and mastering its configuration syntax, you can
+                        automate deployments and maintain consistent environments across your cloud architecture.
+                    </p>
+
+                    <p>
+                        For more information, check out the AWS Terraform Provider documentation in the <a
+                            href="https://registry.terraform.io/providers/hashicorp/aws/latest/docs">Terraform
+                            Registry</a>
+                    </p>
+
+                    <ul class="actions">
+                        <li><a href="../aws.html" class="button big">Go back to AWS posts</a></li>
+                    </ul>
+
+                </section>
+
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div id="sidebar">
+            <div class="inner">
+                <!-- Menu -->
+                <nav id="menu">
+                    <header class="major">
+                        <h3>Menu</h3>
+                    </header>
+                    <ul>
+                        <li><a href="../../../index.html">Homepage</a></li>
+                        <li><a href="../../../about.html">About</a></li>
+                        <!-- <li><a href="services.html">Services</a></li> -->
+                        <li>
+                            <span class="opener">Blogs & Resources</span>
+                            <ul>
+                                <li><a href="../ai/ai.html">AI</a></li>
+                                <li><a href="../aviatrix/aviatrix.html">Aviatrix</a></li>
+                                <li><a href="../aws/aws.html">AWS</a></li>
+                                <li><a href="../azure/azure.html">Azure</a></li>
+                                <li><a href="../gcp/gcp.html">GCP</a></li>
+                                <li><a href="../python/python.html">Python</a></li>
+                                <li><a href="../javascript/javascript.html">Javascript</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!-- Footer -->
+                <footer id="footer">
+                    <p class="copyright">&copy; Autom8-it. All rights reserved. Demo Images: <a
+                            href="https://unsplash.com">Unsplash</a>. Design: <a href="https://html5up.net">HTML5
+                            UP</a>.</p>
+                </footer>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../../assets/js/jquery.min.js"></script>
+    <script src="../../../assets/js/browser.min.js"></script>
+    <script src="../../../assets/js/breakpoints.min.js"></script>
+    <script src="../../../assets/js/util.js"></script>
+    <script src="../../../assets/js/main.js"></script>
+
+</body>
+
+</html>

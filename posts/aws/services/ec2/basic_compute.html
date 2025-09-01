@@ -1,0 +1,175 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+    <title>AWS Basic Networking - Autom8-it</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../../../../assets/css/main.css" />
+</head>
+
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Main -->
+        <div id="main">
+            <div class="inner">
+
+                <!-- Header -->
+                <header id="header">
+                    <a href="../../../../index.html" class="logo"><strong>Autom8-it</strong></a>
+                </header>
+
+                <!-- Content -->
+                <section>
+                    <header class="main">
+                        <h1>AWS Basic Compute</h1>
+                        <p>Understanding Basic Public Compute Resources in AWS</p>
+                    </header>
+
+                    <p>
+                        Amazon Web Services (AWS) offers a wide range of compute resources that enable users to
+                        deploy scalable and secure applications. In this post, we’ll explore the foundational public
+                        compute components in AWS and how they interact within a networked environment.
+                    </p>
+
+                    <h3>Amazon EC2 (Elastic Compute Cloud)</h3>
+                    <p>
+                        <strong>EC2</strong> is the core compute service in AWS, allowing users to launch virtual
+                        machines with customizable configurations. EC2 instances can run various operating systems
+                        and are available in multiple instance types to suit different workloads.
+                    </p>
+
+                    <h3>Elastic Network Interfaces (ENIs)</h3>
+                    <p>
+                        An <strong>ENI</strong> is a virtual network card attached to an EC2 instance. It includes
+                        attributes like private IP addresses, security groups, and MAC addresses. ENIs can be
+                        detached and reattached to other instances, providing flexibility in network configurations.
+                    </p>
+
+                    <h3>Elastic IP Addresses (EIPs)</h3>
+                    <p>
+                        <strong>EIPs</strong> are static public IP addresses that can be associated with EC2
+                        instances or ENIs. They allow instances to be reachable from the internet and can be
+                        remapped to other resources in case of failure or reconfiguration.
+                    </p>
+
+                    <h3>Elastic Block Store (EBS)</h3>
+                    <p>
+                        <strong>EBS volumes</strong> provide persistent block storage for EC2 instances. They can be
+                        attached to one instance at a time and are ideal for storing data that must persist beyond
+                        the life of the instance. EBS volumes come in various types optimized for performance and
+                        cost.
+                    </p>
+
+                    <h3>Security Group Rules</h3>
+                    <p>
+                        <strong>Security groups</strong> act as virtual firewalls for EC2 instances. They control
+                        inbound and outbound traffic based on rules defined by protocol, port range, and
+                        source/destination IP. Security groups are stateful, meaning return traffic is automatically
+                        allowed.
+                    </p>
+
+                    <h3>SSH Key Requirements</h3>
+                    <p>
+                        To access a Linux-based EC2 instance remotely, AWS requires an <strong>SSH key
+                            pair</strong>. The public key is stored in AWS and injected into the instance during
+                        launch, while the private key remains with the user. This key is used to authenticate SSH
+                        sessions securely.
+                    </p>
+                    <ul>
+                        <li>You must create or import a key pair in the AWS EC2 console or CLI.</li>
+                        <li>Ensure the private key file (usually <code>.pem</code>) is stored securely and has
+                            proper file permissions.</li>
+                        <li>Use the key with an SSH client to connect to the instance:
+                            <code>ssh -i my-key.pem ec2-user@<public-ip></code>
+                        </li>
+                    </ul>
+
+                    <h3>Networking Requirements</h3>
+                    <p>
+                        To deploy a public EC2 instance, the following networking components are typically required:
+                    </p>
+                    <ul>
+                        <li>A <strong>VPC</strong> with a <strong>public subnet</strong></li>
+                        <li>An <strong>Internet Gateway (IGW)</strong> attached to the VPC</li>
+                        <li>A <strong>route table</strong> with a route to <code>0.0.0.0/0</code> via the IGW</li>
+                        <li>A <strong>security group</strong> allowing inbound traffic (e.g., SSH on port 22)</li>
+                        <li>An <strong>Elastic IP</strong> associated with the instance or its ENI</li>
+                    </ul>
+
+                    <h3>Conclusion</h3>
+                    <p>
+                        AWS provides a robust set of public compute resources that can be tailored to meet the needs
+                        of any application. Understanding how EC2 instances interact with ENIs, EIPs, EBS volumes,
+                        security groups, and SSH keys is essential for building secure and scalable cloud
+                        infrastructure.
+                    </p>
+
+                    <hr class="major" />
+
+                    <ul class="actions">
+                        <li><a href="../../aws.html" class="button big">Go back to AWS posts</a></li>
+                    </ul>
+
+                </section>
+
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div id="sidebar">
+            <div class="inner">
+                <!-- Menu -->
+                <nav id="menu">
+                    <header class="major">
+                        <h3>Menu</h3>
+                    </header>
+                    <ul>
+                        <li><a href="../../../../index.html">Homepage</a></li>
+                        <li><a href="../../../../about.html">About</a></li>
+                        <!-- <li><a href="services.html">Services</a></li> -->
+                        <li>
+                            <span class="opener">Blogs & Resources</span>
+                            <ul>
+                                <li><a href="../ai/ai.html">AI</a></li>
+                                <li><a href="../aviatrix/aviatrix.html">Aviatrix</a></li>
+                                <li><a href="../aws/aws.html">AWS</a></li>
+                                <li><a href="../azure/azure.html">Azure</a></li>
+                                <li><a href="../gcp/gcp.html">GCP</a></li>
+                                <li><a href="../python/python.html">Python</a></li>
+                                <li><a href="../javascript/javascript.html">Javascript</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!-- Footer -->
+                <footer id="footer">
+                    <p class="copyright">&copy; Autom8-it. All rights reserved. Demo Images: <a
+                            href="https://unsplash.com">Unsplash</a>. Design: <a href="https://html5up.net">HTML5
+                            UP</a>.</p>
+                </footer>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../../../assets/js/jquery.min.js"></script>
+    <script src="../../../../assets/js/browser.min.js"></script>
+    <script src="../../../../assets/js/breakpoints.min.js"></script>
+    <script src="../../../../assets/js/util.js"></script>
+    <script src="../../../../assets/js/main.js"></script>
+
+</body>
+
+</html>
